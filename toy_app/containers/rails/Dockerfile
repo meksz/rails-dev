@@ -25,11 +25,11 @@ RUN ruby -v
 RUN gem install rails -v 4.2.0.beta1
 RUN echo "/usr/bin/gem: --no-ri --no-rdoc" > ~/.gemrc
 
-RUN sudo apt-get install nodejs
+RUN apt-get -yqq install nodejs
   
 RUN adduser web --home /home/web --shell /bin/bash --disabled-password --gecos ""
-RUN chown -R web:web /src
 
 EXPOSE 3000
 
+CMD ["if [ -d /src ]; then chown -R web:web /src fi"]
 CMD ["/bin/bash"]
